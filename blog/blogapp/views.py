@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from blogapp.models import Post, Comments
 from django.views.generic import (TemplateView,CreateView,
                                   ListView,UpdateView,
-                                  DetailView )
+                                  DetailView,DeleteView )
 
 # Create your views here.
 
