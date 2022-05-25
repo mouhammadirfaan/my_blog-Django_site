@@ -4,7 +4,7 @@ from tkinter import Widget
 from django import forms
 from blogapp.models import Post, Comments
 
-class Form(forms.ModelForm):
+class PostForm(forms.ModelForm):
     
     class Meta:
         model = Post
