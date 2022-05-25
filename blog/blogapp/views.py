@@ -1,9 +1,12 @@
 from time import timezone
-from django.shortcuts import render
+from django.utils import timezone
+from django.shortcuts import render, get_list_or_404, redirect
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from blog.blogapp.forms import PostForm, CommentsForm
 from django.urls import reverse_lazy
+
 from blogapp.models import Post, Comments
 from django.views.generic import (TemplateView,CreateView,
                                   ListView,UpdateView,
@@ -47,7 +50,41 @@ class DraftListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return Post.objects.filter(published_date__isnull=True).order_by('created_date')
 
+################################
+###############################
 
+@login_required
+def post_publish(request, pk):
+    post = get_list_or_404(Post, pk=pk) 
+    post.publish
+    return redirect('post_detail', pk=pk)
 
+@login_required
+def add_comment_to_post(request, pk):
+    post = get_list_or_404(Post, pk=pk)
 
+    if request.method == 'POST':
+        form = CommentsForm(request.POST)
+        
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.post = post
+            comment.save()
+            return redirect('post_detail', pk=post.pk)
 
+    else:
+        form = CommentsForm()
+    return render(request, 'blogapp/comment_form.html')
+
+@login_required
+def comment_approve(request, pk):
+    comment = get_list_or_404(Comments, pk=pk)
+    comment.save()
+    return redirect('post_detail', pk=comment.post.pk)
+
+@login_required
+def comment_remove(request, pk):
+    comment = get_list_or_404(Comments, pk=pk)
+    post_pk = comment.post.pk
+    comment.delete()
+    return redirect('post_detail', pk= post_pk)
