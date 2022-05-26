@@ -1,8 +1,6 @@
 {% extends 'blogapp/base.html' %}
 
 {% block content %}
-{% endblock %}
-
 <div class="jumbotron">
     <h1>\please login:</h1>
     <h3>(Must be SupperUser, Please check with the site admin</h3>
@@ -18,7 +16,6 @@
 
         <input type="submit" class="btn btn-primary", value="Login">
         <input type="hidden" name="next", value="{{ next }}">
-
     </form>
-
 </div> 
+{% endblock %}
