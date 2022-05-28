@@ -1,0 +1,17 @@
+{% extends "blogapp/base.html" %}
+{% block content %}
+<div class="centerstage">
+    {% for post in post_detail %}
+    <div class="post">
+        <h1><a href="{% url 'post+detail' pk=post.pk %}">{{ post.title S}}</a></h1>
+        <div class="date">
+            <p>punlished on: {{post.punlished|date: "D M Y"}}</p>
+
+        </div>
+        <a href="{% url 'post+detail' pk=post.pk %}">Commnets: {{post.approved_comments_count }}</a>
+
+    </div>
+    {% endfor %}
+
+</div>
+{% endblock %}
