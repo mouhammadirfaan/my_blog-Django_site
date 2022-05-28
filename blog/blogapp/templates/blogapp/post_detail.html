@@ -1,0 +1,18 @@
+{% extends "blogapp/base.html" %}
+{% block content %}
+<h1 class="posttitle lodeer">{{ post.title}}</h1>
+{% if post.published_date %}
+    <div class="date postdate">
+        {% post.published_date %}
+    </div>
+    {% elsif %}
+    <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}"></a>
+{% endif %}
+    <p class="postcontent">{{ post.title|safe|linebreaksbr }}</p>
+{% endblock %}
+{% if user.is authenticated %}
+<a class="btn btn-primary" href="{% url 'post_edit' %}"> 
+    <span></span>
+</a>
+{% endif %}
+ 
