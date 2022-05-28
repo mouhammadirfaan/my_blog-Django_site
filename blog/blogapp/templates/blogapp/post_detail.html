@@ -12,7 +12,13 @@
 {% endblock %}
 {% if user.is authenticated %}
 <a class="btn btn-primary" href="{% url 'post_edit' %}"> 
-    <span></span>
+    <span class="glyphicon, glyphicon-pencil"></span>
+</a>
+<a class="btn btn-primary" href="{% url 'post_remove' %}"> 
+    <span class="glyphicon, glyphicon-remove"></span>
 </a>
 {% endif %}
+
+<hr>
+<a class="btn btn-primary btn-comment" href="{% url 'add_comment_to_post' pk=post.pk %}"></a>
  
