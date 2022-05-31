@@ -24,4 +24,3 @@ urlpatterns = [
     path('account/login/', views.login, name="login" ),
     path('account/logout/', views.logout, name="logout", kwargs={'next_page':'/'} ),
 ]
-]

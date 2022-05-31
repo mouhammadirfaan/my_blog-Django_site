@@ -4,7 +4,7 @@ from django.shortcuts import render, get_list_or_404, redirect
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from blog.blogapp.forms import PostForm, CommentsForm
+from blogapp.forms import PostForm, CommentsForm
 from django.urls import reverse_lazy
 
 from blogapp.models import Post, Comments

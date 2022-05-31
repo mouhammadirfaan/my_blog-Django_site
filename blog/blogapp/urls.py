@@ -1,4 +1,6 @@
-from django.conf.urls import url
+# from django.urls import re_path, url
+# from django.urls import include, re_path 
+from django.urls import re_path as url
 from blogapp import views
 
 urlpatterns =[
